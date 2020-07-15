@@ -108,4 +108,5 @@ COMMIT;
 ROLLBACK;
 '''.strip()
 
-print(all_text.strip())
+with open('generated_sql.txt', 'w') as f:
+  print(all_text.strip(), file=f)
