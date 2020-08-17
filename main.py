@@ -81,7 +81,18 @@ AND
 '''.format(types=types, before_replacement_for_like=before_replacement_for_like).strip()
 
   sql_after = '''
-# 置換後件数チェック
+# 置換後件数チェック Before
+SELECT
+    count(id)
+FROM
+    markdown_articles
+WHERE
+    type in ({types})
+AND
+    body LIKE '%{before_replacement_for_like}%'
+;
+
+# 置換後件数チェック After
 SELECT
     count(id)
 FROM
@@ -91,7 +102,11 @@ WHERE
 AND
     body LIKE '%{after_replacement_for_like}%'
 ;
-'''.format(types=types, after_replacement_for_like=after_replacement_for_like).strip()
+'''.format(
+    types=types,
+    before_replacement_for_like=before_replacement_for_like,
+    after_replacement_for_like=after_replacement_for_like
+  ).strip()
 
   all_text += '\n' * 3 + f'# ({i + 1}/{len(csv_array)})' + '\n'
   all_text += before_after_text + '\n' * 2
