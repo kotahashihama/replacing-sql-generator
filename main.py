@@ -25,7 +25,7 @@ df = pd.read_csv(csv_file_name)
 csv_array = df.iloc[row_from:row_to, [1, 3, 5]].values.tolist()
 
 # 確認用
-# print(csv_array)
+print(csv_array)
 
 types_array = []
 
@@ -42,7 +42,7 @@ all_text = ''
 for i, item in enumerate(csv_array):
   types = ', '.join(map(lambda x: f"'{x}'", item[0]))
   before_replacement_for_like = item[1].replace('%', '\%').replace('_', '\_')
-  after_replacement_for_like = item[1].replace('%', '\%').replace('_', '\_')
+  after_replacement_for_like = item[2].replace('%', '\%').replace('_', '\_')
 
   before_after_text = '''
 # Before: {before_replacement}
